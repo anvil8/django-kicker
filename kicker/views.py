@@ -25,11 +25,7 @@ class Dispatch(View):
     def post(self, *args, **kwargs):
         model = models_list[kwargs.get('model')]['model']
         if model:
-            if model.to_obj:
-                obj = model.to_obj(self.request.body)
-                obj.save()
-            else:
-                serializer = model.serializer_class(data=json.loads(self.request.body))
-                if serializer.is_valid():
-                    serializer.object.save()
+            serializer = model.serializer_class(data=json.loads(self.request.body))
+            if serializer.is_valid():
+                serializer.object.save()
         return HttpResponse()

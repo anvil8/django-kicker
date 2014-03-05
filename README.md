@@ -11,13 +11,14 @@ installation
 dependencies
 ------------
 
-** django, djangorestframework redis**
+ django, djangorestframework redis
 
 setup
 -----
 
 - add 'kicker', 'rest_framework' to INSTALLED_APPS
-- add ** KICKER_BROKER = "redis" **, **REDIS_URL = *redis_url***, **REDIS_PORT = *redis_port***
+- add  KICKER_BROKER = "redis" , REDIS_URL = *redis_url*, REDIS_PORT = *redis_port*
+- add url(r'^kicker/', include('kicker.urls')) to apps
 
 usage
 -----
@@ -29,3 +30,11 @@ usage
     class Meta:
         abstract = False
 
+websocket server installation
+-----------------------------
+
+- install nodejs
+- install npm
+- run npm install http-server sockjs websocket-multiplex redis-nodejs
+- configure server.js file (You need to edit REDIS_URL, REDIS_PORT, channels, websocket_url, websocket_port)
+- run node server.js
